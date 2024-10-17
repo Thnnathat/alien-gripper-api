@@ -7,14 +7,8 @@ flag = True
 
 def task(alien: AlienGripper):
     while flag:
-        alien.hold()
-        time.sleep(0.01)
-        alien.release()
-        time.sleep(0.01)
-        alien.disable()
-        time.sleep(0.01)
-        data = alien.getData()
-        print(f"id: {data['id']}, Sensors: {data['sensors']}")
+        commandInput(alien)
+
 
 def handle_exit(sig, frame):
     print("กำลังปิดโปรแกรม...")
@@ -23,6 +17,27 @@ def handle_exit(sig, frame):
     alien.stop()
     print("โปรแกรมถูกปิดเรียบร้อย")
     sys.exit(0)
+
+def commandInput(alien: AlienGripper):
+    command = input("Enter command: ")
+    if command == "hold":
+        alien.hold()
+    elif command == "release":
+        alien.release()
+    elif command == "disable":
+        alien.disable()
+
+
+def test():
+    alien.hold()
+    time.sleep(0.01)
+    alien.release()
+    time.sleep(0.01)
+    alien.disable()
+    time.sleep(0.01)
+    data = alien.getData()
+    print(f"id: {data['id']}, Sensors: {data['sensors']}")
+
 
 signal.signal(signal.SIGINT, handle_exit)
 
