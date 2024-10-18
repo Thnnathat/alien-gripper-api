@@ -7,7 +7,8 @@ flag = True
 
 def task(alien: AlienGripper):
     while flag:
-        commandInput(alien)
+        # commandInput(alien)
+        test(alien)
 
 
 def handle_exit(sig, frame):
@@ -28,7 +29,7 @@ def commandInput(alien: AlienGripper):
         alien.disable()
 
 
-def test():
+def test(alien):
     alien.hold()
     time.sleep(0.01)
     alien.release()
@@ -42,6 +43,6 @@ def test():
 signal.signal(signal.SIGINT, handle_exit)
 
 if __name__ == "__main__":
-    alien = AlienGripper("192.168.83.184", "81", "ws")
+    alien = AlienGripper("192.168.8.64", "81", "ws")
     task(alien)
 
